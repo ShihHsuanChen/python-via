@@ -8,7 +8,7 @@ from .app import create_app
 
 def main():
     parser = ArgumentParser(
-        prog='python-via',
+        prog='via',
         formatter_class=ArgumentDefaultsHelpFormatter,
         description='Local VGG Annotator with Uvicorn server',
     )
