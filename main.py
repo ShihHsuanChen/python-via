@@ -1,27 +1,34 @@
-# setup fastapi app
-from fastapi import FastAPI, __version__ as fastapi_version
-from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware
+import os
+import sys
+import webbrowser
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
-# from configs import root_path
+import uvicorn
+
+from app import create_app
 
 
-app = FastAPI(
-    title='VIA',
-    description='',
-    # version=ocr_version.split('+')[0], # remove dirty
-    # root_path=root_path,
-)
+def main():
+    parser = ArgumentParser(
+        prog='python-via',
+        formatter_class=ArgumentDefaultsHelpFormatter,
+        description='Local VGG Annotator with Uvicorn server',
+    )
+    parser.add_argument(
+        '--host',
+        default='127.0.0.1',
+        help='Bind socket to this host.',
+    )
+    parser.add_argument(
+        '--port',
+        type=int,
+        default=8000,
+        help='Bind socket to this port. If 0, an available port will be picked.'
+    )
+    args = parser.parse_args()
+    webbrowser.open(f'http://{args.host}:{args.port}/ui/index.html')
+    uvicorn.run(create_app, **args.__dict__)
+    
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost",
-        "http://localhost:8080",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.mount("/ui", StaticFiles(directory="./static", html=True), name="static")
+if __name__ == '__main__':
+    main()
