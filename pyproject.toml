@@ -18,7 +18,7 @@ maintainers = [
   {name = "ShihHsuanChen"},
 ]
 description = "Local VGG Annotator with Uvicorn server"
-# readme = "README.md"
+readme = "README.md"
 license = {file = "LICENSE"}
 # license-files = ["LICEN[CS]E.*"]
 classifiers = [
