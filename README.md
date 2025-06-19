@@ -8,6 +8,12 @@ This is a local annotator service modified from [VGG Annotator](https://www.robo
 $ pip install git+https://github.com/ShihHsuanChen/python-via.git
 ```
 
+or using `uv`
+
+```
+$ uv pip install git+https://github.com/ShihHsuanChen/python-via.git
+```
+
 ## Usage
 
 ### Run Service
